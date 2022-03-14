@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listView: ListView
@@ -15,8 +18,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var inputText:  TextInputEditText
     private var taskData = ArrayList<Task>()
     private var doneListData = ArrayList<Task>()
+    lateinit var db: AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "MYDB")
+            .allowMainThreadQueries()
+            .build()
+        val taskDao = db.taskDao()
         setContentView(R.layout.activity_main)
         listView = findViewById(R.id.list_view)
         doneView = findViewById(R.id.list_view_done)
@@ -38,9 +46,11 @@ class MainActivity : AppCompatActivity() {
                 val toast = Toast.makeText(this, "Enter task.", Toast.LENGTH_SHORT)
                 toast.show()
             } else {
-                taskData.add(Task(inputText.text.toString(), false))
+                val task = Task(inputText.text.toString(), false)
+                taskData.add(task)
                 todoText.visibility = View.VISIBLE
                 inputText.setText("")
+//                tasks.add(Task(inputText.text.toString(), false))
                 adapter.notifyDataSetChanged()
             }
 
@@ -73,7 +83,30 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        doneView.setOnItemClickListener { adapterView, view, pos, l ->
+            todoText.visibility = View.VISIBLE
+            taskData.add(doneListData[pos])
+            doneListData.removeAt(pos)
+            if (doneListData.isEmpty()) {
+                doneText.visibility = View.INVISIBLE
+            }
+            adapter.notifyDataSetChanged()
+            doneAdapter.notifyDataSetChanged()
+
+            for (i in 0..adapter.count) {
+                listView.setItemChecked(i, false)
+            }
+        }
+
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        taskData.forEach {
+            db.taskDao().insertAll(it)
+        }
+    }
+
 
 
 }

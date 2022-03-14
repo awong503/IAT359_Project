@@ -1,6 +1,12 @@
 package com.example.individualproject
 
-data class Task(val task: String, var isDone: Boolean) {
+import androidx.room.*
+import org.jetbrains.annotations.NotNull
+
+@Entity(primaryKeys = ["task"])
+data class Task(@ColumnInfo var task: String,
+                @ColumnInfo var isDone: Boolean) {
+
     override fun toString(): String {
         return task
     }
