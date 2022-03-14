@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:scrollbarSize="16dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,22 +13,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="TextView" />
+        android:text="Task"
+        android:textSize="24dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter task" />
+            android:hint="Task Name" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:layout_weight="0"
         android:orientation="horizontal">
 
@@ -35,6 +39,7 @@
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:text="Add Task" />
 
@@ -42,13 +47,41 @@
             android:id="@+id/clearButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
-            android:text="Clear" />
+            android:text="Clear Entry" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
+        android:id="@+id/todotextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0" />
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Clear Task List"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/doneTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear Done List"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/list_view_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:choiceMode="multipleChoice"/>
 
 </LinearLayout>

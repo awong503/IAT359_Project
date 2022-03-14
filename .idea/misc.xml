@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/list_item.xml" value="0.4601449275362319" />
+        <entry key="../../.gradle/caches/transforms-3/5423c65485a974611bfb437c61e9a2e1/transformed/material-1.5.0/res/layout/mtrl_alert_select_dialog_multichoice.xml" value="0.3255208333333333" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_checked.xml" value="0.3255208333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3378387451171875" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.37916259765625004" />
       </map>
     </option>
   </component>
