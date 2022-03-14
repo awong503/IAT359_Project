@@ -8,10 +8,10 @@ interface TaskDao {
     fun getAll(): List<Task>
 
     @Query("DELETE FROM task WHERE isDone = 1")
-    suspend fun deleteDone()
+    fun deleteDone()
 
     @Query("DELETE FROM task WHERE isDone = 0")
-    suspend fun deleteTodos()
+    fun deleteTodos()
 
     @Delete
     fun delete(task: Task)
@@ -23,7 +23,7 @@ interface TaskDao {
     fun insertAll(vararg tasks: Task)
 
     @Update
-    fun updateUsers(vararg tasks: Task)
+    fun updateTasks(vararg tasks: Task)
 
 
 }
